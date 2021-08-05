@@ -1,0 +1,16 @@
+{
+  "dependencyDashboard": true,
+  "extends": [
+    "config:base"
+  ],
+  "packageRules": [
+    {
+      "automerge": true,
+      "automergeType": "branch",
+      "matchManagers": [
+        "github-actions",
+        "pre-commit"
+      ]
+    }
+  ]
+}
