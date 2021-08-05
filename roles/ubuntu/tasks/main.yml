@@ -1,0 +1,35 @@
+---
+- name: Set up .bashrc.d
+  ansible.builtin.blockinfile:
+    path: .bashrc
+    block: |
+      for f in ~/.bashrc.d/*; do
+        [ -r "$f" ] && . "$f"
+      done
+
+- name: Set umask
+  ansible.builtin.blockinfile:
+    path: .profile
+    block: |
+      umask 077
+
+- name: Copy files
+  ansible.builtin.copy:
+    src: files/
+    dest: ./
+    mode: u=rwX,g=,o=
+
+- name: Set permissions
+  ansible.builtin.file:
+    dest: ./
+    mode: u=rwX,g=,o=
+    recurse: yes
+
+- name: Remove history
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: absent
+  loop:
+    - ".local/share/nano/search_history"
+    - ".bash_history"
+    - ".lesshst"

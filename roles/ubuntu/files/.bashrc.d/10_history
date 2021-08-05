@@ -1,0 +1,3 @@
+HISTCONTROL=ignoreboth
+HISTSIZE=-1
+unset HISTFILE

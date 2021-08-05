@@ -1,0 +1,23 @@
+#!/bin/sh
+set -eu
+
+## Make sure we have superuser privileges
+[ "$(id -u)" -eq "0" ] || exec sudo "$0" "$@"
+
+log() {
+    printf "\e[1;33m%s\e[0m\n" "$1"
+}
+
+log "Removing package index..."
+rm -rf /var/lib/apt/lists/
+log "Syncing package index..."
+apt-get update
+log "Upgrading..."
+apt-get dist-upgrade -V
+log "Removing redundant packages..."
+apt-get autoremove -V --purge
+log "Purging..."
+# shellcheck disable=SC2046
+apt-get purge -V $(dpkg -l | awk '/^rc/ {print $2}')
+log "Cleaning package cache..."
+apt-get clean

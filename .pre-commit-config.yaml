@@ -1,0 +1,43 @@
+---
+repos:
+  # Meta
+  - repo: meta
+    hooks:
+      - id: check-hooks-apply
+      - id: check-useless-excludes
+  # Generic
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.0.1
+    hooks:
+      - id: check-shebang-scripts-are-executable
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+  # Ansible
+  - repo: https://github.com/ansible-community/ansible-lint
+    rev: v5.1.2
+    hooks:
+      - id: ansible-lint
+        additional_dependencies: ['.[community]']
+  # Markdown
+  - repo: https://github.com/igorshubovych/markdownlint-cli
+    rev: v0.28.1
+    hooks:
+      - id: markdownlint
+  - repo: https://github.com/executablebooks/mdformat
+    rev: 0.7.8
+    hooks:
+      - id: mdformat
+        additional_dependencies:
+          - mdformat-gfm
+          - mdformat-tables
+        args: ["--number", "--wrap", "80"]
+  # Shell
+  - repo: https://github.com/shellcheck-py/shellcheck-py
+    rev: v0.7.2.1
+    hooks:
+      - id: shellcheck
+  # YAML
+  - repo: https://github.com/adrienverge/yamllint
+    rev: v1.26.2
+    hooks:
+      - id: yamllint
