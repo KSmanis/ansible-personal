@@ -1,4 +1,9 @@
 ---
+- name: gentoo
+  hosts: gentoo
+  roles:
+    - gentoo
+
 - name: ubuntu
   hosts: ubuntu
   roles:
