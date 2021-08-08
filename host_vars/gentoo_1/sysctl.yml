@@ -2,13 +2,13 @@
 sysctl_config:
   - name: fs.inotify.max_user_watches
     value: "524288"
-    sysctl_file: /etc/sysctl.d/50-jetbrains.conf
+    sysctl_file: /etc/sysctl.d/50jetbrains.conf
     comment: |-
       Increase the per-user inotify watch limit for JetBrains IDEs.
       https://youtrack.jetbrains.com/articles/IDEA-A-2/Inotify-Watches-Limit
   - name: vm.swappiness
     value: "0"
-    sysctl_file: /etc/sysctl.d/90-swap.conf
+    sysctl_file: /etc/sysctl.d/90swap.conf
     comment: |-
       Disable swap usage.
       https://wiki.archlinux.org/title/Swap#Swappiness
