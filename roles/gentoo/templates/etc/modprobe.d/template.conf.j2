@@ -1,0 +1,6 @@
+{{ ansible_managed | comment }}
+
+{% if item.value.comment is defined %}{{ item.value.comment | comment(prefix='', postfix='') }}{% endif %}
+{% for module in item.value.modules %}
+options {{ module.name }} {{ module.params }}
+{% endfor %}

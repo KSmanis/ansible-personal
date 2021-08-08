@@ -1,3 +1,4 @@
 ---
 - import_tasks: local.yml
+- import_tasks: modprobe.yml
 - import_tasks: sysctl.yml

@@ -1,0 +1,11 @@
+---
+modprobe_config:
+  wifi:
+    comment: |-
+      Disable wifi power saving.
+      https://bugzilla.kernel.org/show_bug.cgi?id=203709
+    modules:
+      - name: iwlmvm
+        params: power_scheme=1
+      - name: iwlwifi
+        params: power_save=0
