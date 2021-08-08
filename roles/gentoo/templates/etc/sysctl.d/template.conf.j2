@@ -1,4 +1,6 @@
 {{ ansible_managed | comment }}
 
-{% if item.comment is defined %}{{ item.comment | comment(prefix='', postfix='') }}{% endif %}
-{{ item.name }} = {{ item.value }}
+{% if item.value.comment is defined %}{{ item.value.comment | comment(prefix='', postfix='') }}{% endif %}
+{% for entry in item.value.entries %}
+{{ entry.name }} = {{ entry.value }}
+{% endfor %}

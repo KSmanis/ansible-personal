@@ -1,18 +1,17 @@
 ---
-- name: Template sysctl configuration
-  become: yes
-  ansible.builtin.template:
-    src: etc/sysctl.d/template.conf.j2
-    dest: "{{ item.sysctl_file }}"
-    owner: root
-    group: root
-    mode: "0644"
-  loop:
-    "{{ sysctl_config | selectattr('sysctl_file', 'defined') | rejectattr('sysctl_file', '==', '/etc/sysctl.conf') }}"
+- name: Set up sysctl configuration
+  block:
+    - name: Template sysctl configuration
+      ansible.builtin.template:
+        src: etc/sysctl.d/template.conf.j2
+        dest: "/etc/sysctl.d/{{ item.key }}.conf"
+        owner: root
+        group: root
+        mode: "0644"
+      loop: "{{ sysctl_config | dict2items }}"
 
-- name: Apply sysctl configuration
+    - name: Apply sysctl configuration
+      ansible.posix.sysctl: "{{ item.1 }}"
+      loop: "{{ sysctl_config | subelements('entries') }}"
+  when: sysctl_config
   become: yes
-  ansible.posix.sysctl:
-    "{{ item | dict2items | rejectattr('key', 'in', ['comment']) | list | items2dict }}"
-  loop:
-    "{{ sysctl_config }}"
