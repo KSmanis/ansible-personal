@@ -1,0 +1,27 @@
+---
+- name: Set local service facts
+  ansible.builtin.set_fact:
+    scripts: "{{ scripts | default([]) + lookup('fileglob', '{{ local_dir }}/*.{{ item }}.j2', wantlist=True) }}"
+  vars:
+    local_dir: "{{ playbook_dir }}/host_templates/{{ inventory_hostname }}/etc/local.d"
+  loop:
+    - "start"
+    - "stop"
+
+- name: Set up local service
+  block:
+    - name: Template local service scripts
+      ansible.builtin.template:
+        src: "{{ item }}"
+        dest: "/etc/local.d/{{ item | basename | splitext | first }}"
+        owner: root
+        group: root
+        mode: "0755"
+      loop: "{{ scripts }}"
+
+    - name: Enable local service
+      ansible.builtin.service:
+        name: local
+        enabled: yes
+  when: scripts
+  become: yes
