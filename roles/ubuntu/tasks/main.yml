@@ -1,4 +1,12 @@
 ---
+- name: Set up .profile.d
+  ansible.builtin.blockinfile:
+    path: .profile
+    block: |
+      for f in ~/.profile.d/*; do
+        [ -r "$f" ] && . "$f"
+      done
+
 - name: Set up .bashrc.d
   ansible.builtin.blockinfile:
     path: .bashrc
@@ -7,17 +15,11 @@
         [ -r "$f" ] && . "$f"
       done
 
-- name: Set umask
-  ansible.builtin.blockinfile:
-    path: .profile
-    block: |
-      umask 077
-
 - name: Copy files
   ansible.builtin.copy:
     src: files/
     dest: ./
-    mode: u=rwX,g=,o=
+    mode: preserve
 
 - name: Set permissions
   ansible.builtin.file:
