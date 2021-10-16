@@ -1,3 +1,4 @@
+#{{ ansible_managed | comment(prefix='\n') }}
 set linenumbers
 set softwrap
 unset historylog

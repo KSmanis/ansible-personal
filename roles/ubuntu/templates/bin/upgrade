@@ -1,8 +1,8 @@
 #!/bin/sh
-set -eu
+#{{ ansible_managed | comment(prefix='\n') }}
 
 ## Make sure we have superuser privileges
-[ "$(id -u)" -eq "0" ] || exec sudo "$0" "$@"
+[ "$(id -u)" = "0" ] || exec sudo "$0" "$@"
 
 log() {
     printf "\e[1;33m%s\e[0m\n" "$1"

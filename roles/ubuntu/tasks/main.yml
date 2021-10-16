@@ -3,23 +3,32 @@
   ansible.builtin.blockinfile:
     path: .profile
     block: |
-      for f in ~/.profile.d/*; do
-        [ -r "$f" ] && . "$f"
+      for f in ~/.profile.d/*.sh; do
+        [ -f "$f" ] && . "$f"
       done
 
 - name: Set up .bashrc.d
   ansible.builtin.blockinfile:
     path: .bashrc
     block: |
-      for f in ~/.bashrc.d/*; do
-        [ -r "$f" ] && . "$f"
+      for f in ~/.bashrc.d/*.sh; do
+        [ -f "$f" ] && . "$f"
       done
 
-- name: Copy files
-  ansible.builtin.copy:
-    src: files/
-    dest: ./
-    mode: preserve
+- name: Create directories
+  ansible.builtin.file:
+    path: '{{ item.path }}'
+    state: directory
+  with_community.general.filetree: templates/  # noqa deprecated-bare-vars
+  when: item.state == 'directory'
+
+- name: Template files
+  ansible.builtin.template:
+    src: '{{ item.src }}'
+    dest: '{{ item.path }}'
+    mode: '{{ item.mode }}'
+  with_community.general.filetree: templates/  # noqa deprecated-bare-vars
+  when: item.state == 'file'
 
 - name: Set permissions
   ansible.builtin.file:
