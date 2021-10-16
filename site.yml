@@ -1,4 +1,9 @@
 ---
+- name: all
+  hosts: all
+  roles:
+    - common
+
 - name: gentoo
   hosts: gentoo
   roles:
