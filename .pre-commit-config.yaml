@@ -19,6 +19,11 @@ repos:
     hooks:
       - id: ansible-lint
         additional_dependencies: ['.[community]']
+  # GitHub Actions
+  - repo: https://github.com/rhysd/actionlint
+    rev: v1.6.8
+    hooks:
+      - id: actionlint-docker
   # JSON
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.1.0
