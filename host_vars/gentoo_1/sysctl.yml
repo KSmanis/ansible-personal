@@ -7,10 +7,3 @@ sysctl_config:
     entries:
       - name: fs.inotify.max_user_watches
         value: 524288
-  90swap:
-    comment: |-
-      Disable swap usage.
-      https://wiki.archlinux.org/title/Swap#Swappiness
-    entries:
-      - name: vm.swappiness
-        value: 0
