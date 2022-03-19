@@ -18,7 +18,6 @@ repos:
     rev: v6.0.1
     hooks:
       - id: ansible-lint
-        additional_dependencies: ['.[community]']
   # Git
   - repo: https://github.com/jorisroovers/gitlint
     rev: v0.17.0
