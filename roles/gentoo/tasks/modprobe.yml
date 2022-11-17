@@ -1,5 +1,7 @@
 ---
 - name: Set up modprobe configuration
+  when: modprobe_config
+  become: yes
   block:
     - name: Template modprobe configuration
       ansible.builtin.template:
@@ -13,5 +15,3 @@
     - name: Apply modprobe configuration
       community.general.modprobe: "{{ item.1 }}"
       loop: "{{ modprobe_config | subelements('modules') }}"
-  when: modprobe_config
-  become: yes
