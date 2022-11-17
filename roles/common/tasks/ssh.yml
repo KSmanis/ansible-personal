@@ -1,5 +1,7 @@
 ---
 - name: Set up SSH configuration
+  when: authorized_keys
+  become: yes
   block:
     - name: Set up users
       ansible.builtin.user:
@@ -14,5 +16,3 @@
         exclusive: yes
       loop:
         "{{ authorized_keys | dict2items }}"
-  when: authorized_keys
-  become: yes

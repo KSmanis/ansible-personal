@@ -1,2 +1,3 @@
 ---
-- import_tasks: ssh.yml
+- name: Set up SSH configuration
+  ansible.builtin.import_tasks: ssh.yml

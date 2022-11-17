@@ -1,5 +1,7 @@
 ---
 - name: Set up sysctl configuration
+  when: sysctl_config
+  become: yes
   block:
     - name: Template sysctl configuration
       ansible.builtin.template:
@@ -13,5 +15,3 @@
     - name: Apply sysctl configuration
       ansible.posix.sysctl: "{{ item.1 }}"
       loop: "{{ sysctl_config | subelements('entries') }}"
-  when: sysctl_config
-  become: yes

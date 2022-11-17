@@ -9,6 +9,8 @@
     - "stop"
 
 - name: Set up local service
+  when: scripts
+  become: yes
   block:
     - name: Template local service scripts
       ansible.builtin.template:
@@ -23,5 +25,3 @@
       ansible.builtin.service:
         name: local
         enabled: yes
-  when: scripts
-  become: yes
