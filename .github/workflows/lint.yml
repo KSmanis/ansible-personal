@@ -26,7 +26,6 @@ jobs:
       - name: Run gitlint
         run: pre-commit run --color=always --hook-stage manual gitlint-ci
       - name: Run pre-commit
-        if: success() || failure()
         run: pre-commit run --all-files --color=always --show-diff-on-failure
 
   super-linter:
