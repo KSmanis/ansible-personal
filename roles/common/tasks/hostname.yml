@@ -1,0 +1,6 @@
+---
+- name: Set hostname
+  when: hostname is defined
+  become: yes
+  ansible.builtin.hostname:
+    name: "{{ hostname }}"

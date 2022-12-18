@@ -1,3 +1,5 @@
 ---
+- name: Set hostname
+  ansible.builtin.import_tasks: hostname.yml
 - name: Set up SSH configuration
   ansible.builtin.import_tasks: ssh.yml
