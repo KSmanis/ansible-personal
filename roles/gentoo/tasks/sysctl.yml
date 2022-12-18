@@ -13,5 +13,9 @@
       loop: "{{ sysctl_config | dict2items }}"
 
     - name: Apply sysctl configuration
-      ansible.posix.sysctl: "{{ item.1 }}"
-      loop: "{{ sysctl_config | subelements('entries') }}"
+      ansible.posix.sysctl:
+        name: "{{ item.1.name }}"
+        value: "{{ item.1.value }}"
+        sysctl_file: "/etc/sysctl.d/{{ item.0.key }}.conf"
+        sysctl_set: true
+      loop: "{{ sysctl_config | dict2items | subelements('value.entries') }}"
