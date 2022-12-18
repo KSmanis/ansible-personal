@@ -10,7 +10,7 @@
 
 - name: Set up local service
   when: scripts
-  become: yes
+  become: true
   block:
     - name: Template local service scripts
       ansible.builtin.template:
@@ -24,4 +24,4 @@
     - name: Enable local service
       ansible.builtin.service:
         name: local
-        enabled: yes
+        enabled: true

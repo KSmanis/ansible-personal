@@ -1,7 +1,7 @@
 ---
 - name: Set up sysctl configuration
   when: sysctl_config
-  become: yes
+  become: true
   block:
     - name: Template sysctl configuration
       ansible.builtin.template:

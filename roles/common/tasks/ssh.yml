@@ -1,7 +1,7 @@
 ---
 - name: Set up SSH configuration
   when: authorized_keys
-  become: yes
+  become: true
   block:
     - name: Set up users
       ansible.builtin.user:
@@ -13,6 +13,6 @@
       ansible.posix.authorized_key:
         user: "{{ item.key }}"
         key: "{{ item.value }}"
-        exclusive: yes
+        exclusive: true
       loop:
         "{{ authorized_keys | dict2items }}"
