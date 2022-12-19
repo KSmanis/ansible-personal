@@ -13,3 +13,5 @@
   hosts: ubuntu
   roles:
     - ubuntu
+    - role: geerlingguy.docker
+      become: true
