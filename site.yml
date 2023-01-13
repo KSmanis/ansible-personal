@@ -13,5 +13,7 @@
   hosts: ubuntu
   roles:
     - ubuntu
+    - role: willshersystems.sshd
+      become: true
     - role: geerlingguy.docker
       become: true

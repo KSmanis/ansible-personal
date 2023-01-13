@@ -1,0 +1,5 @@
+---
+sshd_config_file: /etc/ssh/sshd_config.d/50-ansible.conf
+sshd:
+  PasswordAuthentication: "no"
+  PermitRootLogin: "no"
