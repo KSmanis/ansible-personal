@@ -1,0 +1,5 @@
+---
+admin_packages:
+  - "bash-completion"
+  - "pipx"
+  - "tree"

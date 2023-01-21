@@ -45,3 +45,11 @@
     - ".local/share/nano/search_history"
     - ".bash_history"
     - ".lesshst"
+
+- name: Install admin packages
+  when: admin_packages
+  become: true
+  ansible.builtin.apt:
+    name: "{{ item }}"
+    update_cache: true
+  loop: "{{ admin_packages }}"
