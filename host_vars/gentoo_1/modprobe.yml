@@ -1,0 +1,8 @@
+---
+modprobe_config:
+  headset_mic:
+    comment: |-
+      https://wiki.archlinux.org/title/Huawei_MateBook_14_AMD_(2020)#Audio
+    modules:
+      - name: snd_hda_intel
+        params: index=0 model=alc255-acer,dell-headset-multi
