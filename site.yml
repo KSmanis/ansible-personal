@@ -1,15 +1,15 @@
 ---
-- name: all
+- name: All hosts
   hosts: all
   roles:
     - common
 
-- name: gentoo
+- name: Gentoo hosts
   hosts: gentoo
   roles:
     - gentoo
 
-- name: ubuntu
+- name: Ubuntu hosts
   hosts: ubuntu
   roles:
     - ubuntu
