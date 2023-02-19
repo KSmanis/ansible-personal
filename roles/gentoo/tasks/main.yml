@@ -3,5 +3,3 @@
   ansible.builtin.import_tasks: local.yml
 - name: Set up modprobe configuration
   ansible.builtin.import_tasks: modprobe.yml
-- name: Set up sysctl configuration
-  ansible.builtin.import_tasks: sysctl.yml
