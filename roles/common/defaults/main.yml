@@ -1,3 +1,4 @@
 ---
 authorized_keys: {}
+pipx_packages: []
 sysctl_config: {}

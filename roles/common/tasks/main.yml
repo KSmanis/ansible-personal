@@ -5,3 +5,5 @@
   ansible.builtin.import_tasks: ssh.yml
 - name: Set up sysctl configuration
   ansible.builtin.import_tasks: sysctl.yml
+- name: Set up pipx packages
+  ansible.builtin.import_tasks: pipx.yml
