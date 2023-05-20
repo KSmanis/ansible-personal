@@ -1,3 +1,4 @@
 ---
 pipx_packages:
+  - "speedtest-cli"
   - "yt-dlp"
