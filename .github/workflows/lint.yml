@@ -14,15 +14,15 @@ jobs:
       - name: Install pre-commit
         run: pipx install pre-commit
       - name: Identify Python version
-        run: echo "PYTHON_VERSION=$(python -V | cut -d' ' -f2)" >> "$GITHUB_ENV"
+        run: echo "PYTHON_VERSION=$(python -V | cut -d' ' -f2 | cut -d. -f-2)" >> "$GITHUB_ENV"
       - name: Cache pre-commit hooks
         id: cache-pre-commit
         uses: actions/cache@v3
         with:
           path: ~/.cache/pre-commit
-          key: pre-commit-python-${{ env.PYTHON_VERSION }}-${{ hashFiles('.pre-commit-config.yaml') }}
+          key: pre-commit-${{ env.PYTHON_VERSION }}-${{ hashFiles('.pre-commit-config.yaml') }}
           restore-keys: |
-            pre-commit-python-${{ env.PYTHON_VERSION }}-
+            pre-commit-${{ env.PYTHON_VERSION }}-
             pre-commit-
       - name: Prune pre-commit hooks
         if: steps.cache-pre-commit.outputs.cache-hit != 'true'
