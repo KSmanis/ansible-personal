@@ -7,7 +7,7 @@
     - "{{ playbook_dir }}/host_templates/{{ inventory_hostname }}/etc/local.d/*.stop.j2"
 
 - name: Set up local service
-  when: gentoo_local_scripts
+  when: gentoo_local_scripts is defined
   become: true
   block:
     - name: Template local service scripts
