@@ -6,6 +6,6 @@ collections:
     version: 7.2.1
 roles:
   - name: geerlingguy.docker
-    version: 6.1.0
+    version: 6.2.0
   - name: willshersystems.sshd
     version: v0.20.0
