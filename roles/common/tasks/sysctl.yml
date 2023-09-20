@@ -1,6 +1,6 @@
 ---
 - name: Set up sysctl configuration
-  when: sysctl_config
+  when: common_sysctl_config
   become: true
   block:
     - name: Template sysctl configuration
@@ -10,7 +10,7 @@
         owner: root
         group: root
         mode: "0644"
-      loop: "{{ sysctl_config | dict2items }}"
+      loop: "{{ common_sysctl_config | dict2items }}"
 
     - name: Apply sysctl configuration
       ansible.posix.sysctl:
@@ -18,4 +18,4 @@
         value: "{{ item.1.value }}"
         sysctl_file: "/etc/sysctl.d/{{ item.0.key }}.conf"
         sysctl_set: true
-      loop: "{{ sysctl_config | dict2items | subelements('value.entries') }}"
+      loop: "{{ common_sysctl_config | dict2items | subelements('value.entries') }}"

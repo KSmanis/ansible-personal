@@ -1,2 +1,2 @@
 ---
-modprobe_config: {}
+gentoo_modprobe_config: {}

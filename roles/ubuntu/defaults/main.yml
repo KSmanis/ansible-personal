@@ -1,5 +1,5 @@
 ---
-admin_packages:
+ubuntu_admin_packages:
   - "bash-completion"
   - "iotop"
   - "pipx"

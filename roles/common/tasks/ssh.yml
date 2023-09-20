@@ -1,13 +1,13 @@
 ---
 - name: Set up SSH configuration
-  when: authorized_keys
+  when: common_authorized_keys
   become: true
   block:
     - name: Set up users
       ansible.builtin.user:
         name: "{{ item }}"
       loop:
-        "{{ authorized_keys.keys() }}"
+        "{{ common_authorized_keys.keys() }}"
 
     - name: Set up authorized keys
       ansible.posix.authorized_key:
@@ -15,4 +15,4 @@
         key: "{{ item.value }}"
         exclusive: true
       loop:
-        "{{ authorized_keys | dict2items }}"
+        "{{ common_authorized_keys | dict2items }}"

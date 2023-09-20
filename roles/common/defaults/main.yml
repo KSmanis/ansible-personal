@@ -1,4 +1,4 @@
 ---
-authorized_keys: {}
-pipx_packages: []
-sysctl_config: {}
+common_authorized_keys: {}
+common_pipx_packages: []
+common_sysctl_config: {}

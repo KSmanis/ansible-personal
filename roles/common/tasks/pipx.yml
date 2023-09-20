@@ -1,7 +1,7 @@
 ---
 - name: Install pipx packages
-  when: pipx_packages
+  when: common_pipx_packages
   community.general.pipx:
     name: "{{ item }}"
     state: latest
-  loop: "{{ pipx_packages }}"
+  loop: "{{ common_pipx_packages }}"
