@@ -1,6 +1,6 @@
 ---
 - name: Set up modprobe configuration
-  when: modprobe_config
+  when: gentoo_modprobe_config
   become: true
   block:
     - name: Template modprobe configuration
@@ -10,8 +10,8 @@
         owner: root
         group: root
         mode: "0644"
-      loop: "{{ modprobe_config | dict2items }}"
+      loop: "{{ gentoo_modprobe_config | dict2items }}"
 
     - name: Apply modprobe configuration
       community.general.modprobe: "{{ item.1 }}"
-      loop: "{{ modprobe_config | subelements('modules') }}"
+      loop: "{{ gentoo_modprobe_config | subelements('modules') }}"

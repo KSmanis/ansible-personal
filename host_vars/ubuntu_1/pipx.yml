@@ -1,4 +1,4 @@
 ---
-pipx_packages:
+common_pipx_packages:
   - "speedtest-cli"
   - "yt-dlp"

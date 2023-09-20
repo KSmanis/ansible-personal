@@ -1,5 +1,5 @@
 ---
-sysctl_config:
+common_sysctl_config:
   50-quic:
     comment: |-
       Increase maximum size of the UDP receive buffer.

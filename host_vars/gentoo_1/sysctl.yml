@@ -1,5 +1,5 @@
 ---
-sysctl_config:
+common_sysctl_config:
   50jetbrains:
     comment: |-
       Increase the per-user inotify watch limit for JetBrains IDEs.
