@@ -1,4 +1,6 @@
 ---
+- name: Set up CloudFlare DNS records
+  ansible.builtin.import_tasks: cloudflare_dns.yml
 - name: Set hostname
   ansible.builtin.import_tasks: hostname.yml
 - name: Set up SSH configuration

@@ -1,0 +1,10 @@
+---
+- name: Set up CloudFlare DNS records
+  when: common_cloudflare_dns_records
+  community.general.cloudflare_dns:
+    api_token: "{{ item.api_token }}"
+    domain: "{{ item.domain }}"
+    record: "{{ item.record }}"
+    type: "{{ item.type }}"
+    value: "{{ item.value }}"
+  loop: "{{ common_cloudflare_dns_records }}"

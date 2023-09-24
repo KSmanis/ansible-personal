@@ -1,4 +1,5 @@
 ---
 common_authorized_keys: {}
+common_cloudflare_dns_records: []
 common_pipx_packages: []
 common_sysctl_config: {}
