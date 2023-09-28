@@ -1,5 +1,3 @@
 ---
-docker_install_compose: false
-docker_install_compose_plugin: true
 docker_users:
   - "{{ ansible_user }}"
