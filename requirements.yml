@@ -8,4 +8,4 @@ roles:
   - name: geerlingguy.docker
     version: 7.0.1
   - name: willshersystems.sshd
-    version: v0.21.0
+    version: v0.23.0
