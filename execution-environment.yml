@@ -11,16 +11,6 @@ dependencies:
     package_system: python3
   ansible_core:
     package_pip: ansible-core
-  galaxy:
-    collections:
-      - name: ansible.posix
-        version: 1.5.4
-      - name: community.general
-        version: 7.4.0
-    roles:
-      - name: geerlingguy.docker
-        version: 7.0.1
-      - name: willshersystems.sshd
-        version: v0.23.0
+  galaxy: requirements.yml
   system:
     - openssh-clients
