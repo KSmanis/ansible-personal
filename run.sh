@@ -2,23 +2,16 @@
 set -eu
 
 REPO_NAME="${REPO_NAME:-$(basename "$(git remote get-url origin | rev | cut -d '/' -f 1 | rev)" .git)}"
-IMAGE="${IMAGE:-$REPO_NAME-ansible-runner}"
+IMAGE="${IMAGE:-$REPO_NAME-execution-env}"
 
 if [ "$#" -eq 0 ]; then
     set -- ansible-playbook site.yml
 fi
 
-trap "rm -rf context/" EXIT
-docker run \
-    --rm \
-    -u "$(id -u):$(id -g)" \
-    -v "$PWD:$PWD" \
-    -w "$PWD" \
-    quay.io/ansible/ansible-builder \
-    ansible-builder create
-
-export DOCKER_BUILDKIT=1
-docker build --pull -t "$IMAGE" context
+ansible-builder build \
+    --container-runtime docker \
+    --tag "$IMAGE" \
+    --verbosity 3
 [ "$#" -eq 1 ] && [ "$1" = "--build" ] && exit
 
 docker run \
