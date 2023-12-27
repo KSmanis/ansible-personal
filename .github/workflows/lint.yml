@@ -29,7 +29,7 @@ jobs:
         run: pre-commit gc
       - name: Run gitlint
         env:
-          VIRTUALENV_PIP: 23.2.1
+          VIRTUALENV_PIP: 23.3.2
         run: pre-commit run --color=always --hook-stage manual gitlint-ci
       - name: Run pre-commit
         run: pre-commit run --all-files --color=always --show-diff-on-failure
