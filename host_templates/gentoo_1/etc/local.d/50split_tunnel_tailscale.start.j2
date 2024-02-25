@@ -1,0 +1,19 @@
+#!/bin/sh
+
+#{{ ansible_managed | comment(prefix='\n') }}
+
+nft -f- << EOF
+# https://github.com/tailscale/tailscale/issues/925#issuecomment-1207297761
+table inet mullvad-tailscale {
+  chain exclude-outgoing {
+    type route hook output priority 0; policy accept;
+    ip daddr 100.64.0.0/10 ct mark set 0x00000f41 meta mark set 0x6d6f6c65;
+    ip6 daddr fd7a:115c:a1e0::/48 ct mark set 0x00000f41 meta mark set 0x6d6f6c65;
+  }
+
+  chain allow-incoming {
+    type filter hook input priority -100; policy accept;
+    iifname "tailscale0" ct mark set 0x00000f41 meta mark set 0x6d6f6c65;
+  }
+}
+EOF
