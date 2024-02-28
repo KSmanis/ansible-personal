@@ -1,0 +1,11 @@
+---
+common_sysctl_config:
+  50tailscale:
+    comment: |-
+      Enable IP forwarding for subnet routers.
+      https://tailscale.com/kb/1019/subnets?tab=linux#enable-ip-forwarding
+    entries:
+      - name: net.ipv4.ip_forward
+        value: 1
+      - name: net.ipv6.conf.all.forwarding
+        value: 1
