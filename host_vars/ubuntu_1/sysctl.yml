@@ -1,9 +1,0 @@
----
-common_sysctl_config:
-  50-redis:
-    comment: |-
-      Enable memory overcommit.
-      https://redis.io/docs/getting-started/faq/#background-saving-fails-with-a-fork-error-on-linux
-    entries:
-      - name: vm.overcommit_memory
-        value: 1
