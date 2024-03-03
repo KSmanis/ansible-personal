@@ -13,6 +13,7 @@
   hosts: ubuntu
   roles:
     - ubuntu
+    - artis3n.tailscale
     - role: willshersystems.sshd
       become: true
     - role: geerlingguy.docker
