@@ -11,6 +11,33 @@
 
 - name: Ubuntu hosts
   hosts: ubuntu
+  # https://github.com/geerlingguy/ansible-role-docker/issues/411#issuecomment-1748940314
+  pre_tasks:
+    - name: Set up Docker service override
+      become: true
+      block:
+        - name: Create Docker service override directory
+          ansible.builtin.file:
+            dest: /etc/systemd/system/docker.service.d
+            state: directory
+            owner: root
+            group: root
+            mode: "0755"
+        - name: Create Docker service override
+          ansible.builtin.copy:
+            dest: /etc/systemd/system/docker.service.d/ansible.conf
+            content: |
+              [Service]
+              ExecStart=
+              ExecStart=/usr/bin/dockerd
+            owner: root
+            group: root
+            mode: "0644"
+          register: dockerd_override
+        - name: Reload systemd configuration  # noqa no-handler
+          when: dockerd_override.changed
+          ansible.builtin.systemd:
+            daemon_reload: true
   roles:
     - ubuntu
     - artis3n.tailscale
