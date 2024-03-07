@@ -6,7 +6,7 @@ collections:
     version: 8.4.0
 roles:
   - name: artis3n.tailscale
-    version: v4.4.2
+    version: v4.4.3
   - name: geerlingguy.docker
     version: 7.1.0
   - name: willshersystems.sshd
