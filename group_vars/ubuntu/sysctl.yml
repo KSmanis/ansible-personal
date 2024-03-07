@@ -2,7 +2,7 @@
 common_sysctl_config:
   50tailscale:
     comment: |-
-      Enable IP forwarding for subnet routers.
+      Enable IP forwarding.
       https://tailscale.com/kb/1019/subnets?tab=linux#enable-ip-forwarding
     entries:
       - name: net.ipv4.ip_forward
