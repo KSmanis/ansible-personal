@@ -47,3 +47,7 @@
     name: "{{ item }}"
     update_cache: true
   loop: "{{ ubuntu_admin_packages }}"
+
+- name: Set up zram
+  when: ubuntu_zram_enabled
+  ansible.builtin.import_tasks: zram.yml

@@ -1,0 +1,6 @@
+---
+- name: Reload zramswap
+  become: true
+  ansible.builtin.service:
+    name: zramswap
+    state: reloaded

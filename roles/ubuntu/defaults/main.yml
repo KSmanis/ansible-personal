@@ -5,4 +5,5 @@ ubuntu_admin_packages:
   - "net-tools"
   - "pipx"
   - "tree"
-  - "zram-tools"
+ubuntu_zram_enabled: true
+ubuntu_zram_percent: "50"

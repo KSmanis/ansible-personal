@@ -1,0 +1,17 @@
+---
+- name: Install zram-tools
+  become: true
+  ansible.builtin.apt:
+    name: zram-tools
+    update_cache: true
+
+- name: Update configuration
+  become: true
+  community.general.ini_file:
+    path: /etc/default/zramswap
+    create: false
+    no_extra_spaces: true
+    option: PERCENT
+    value: "{{ ubuntu_zram_percent }}"
+  notify:
+    - Reload zramswap
