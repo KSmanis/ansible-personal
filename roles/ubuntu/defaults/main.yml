@@ -5,3 +5,4 @@ ubuntu_admin_packages:
   - "net-tools"
   - "pipx"
   - "tree"
+  - "zram-tools"
